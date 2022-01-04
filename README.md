@@ -7,6 +7,7 @@ This project contains a simple REST API implemented with Spring Boot, which calc
 
 ### API specifications
 Open API specification: https://app.swaggerhub.com/apis/stephane-sttlab/sag-demo/1.0.0
+
 The API is secured with a "thisisademo" API key, which needs to be passed in a api-key HTTP header.
 
   
@@ -90,5 +91,16 @@ To deploy in your Kubernetes cluster:
  * Verify the service is also running by submitting the following command. You should see one sagdemo-ingress controller with a public IP address. It can take a few minutes for this IP address to show so you may have to repeat the command a few times.
 
      `kubectl get ingress`
+
+ * Note the IP address assigned to the ingress controller, you will need it to call the API.
+
+To test the deployment run the following curl command:
+  curl --location --request POST 'http://sagdemo.sttlab.eu/digests' \
+--header 'api-key: thisisademo' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "algorithm": "SHA256",
+    "text": "test"
+}'
 
  * Note the IP address assigned to the ingress controller, you will need it to call the API.
