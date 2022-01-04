@@ -92,15 +92,16 @@ To deploy in your Kubernetes cluster:
 
      `kubectl get ingress`
 
+ * Note the IP address assigned to the ingress controller, you will need it to call the API. 
+
  * Note the IP address assigned to the ingress controller, you will need it to call the API.
 
 To test the deployment run the following curl command:
-  `curl --location --request POST 'http://sagdemo.sttlab.eu/digests' \
+
+`curl --location --request POST 'http://sagdemo.sttlab.eu/digests' \
 --header 'api-key: thisisademo' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "algorithm": "SHA256",
     "text": "test"
-}' 
-
- * Note the IP address assigned to the ingress controller, you will need it to call the API.
+}'
