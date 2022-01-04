@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sagdemo
+  name: sagdemo
+spec:
+  replicas: 1
+  minReadySeconds: 45
+  selector:
+    matchLabels:
+      app: sagdemo
+  template:
+    metadata:
+      labels:
+        app: sagdemo
+    spec:
+      containers:
+      - image: sttlab/sagdemo:0.0.6
+        imagePullPolicy: IfNotPresent
+        name: sagdemo
+        ports:
+        - containerPort: 8080
