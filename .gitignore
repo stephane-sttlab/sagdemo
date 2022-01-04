@@ -33,4 +33,5 @@ build/
 .vscode/
 
 docker/app.jar
+
 .DS_Store
