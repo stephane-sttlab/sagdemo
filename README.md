@@ -97,7 +97,15 @@ To deploy in your Kubernetes cluster:
  * Note the IP address assigned to the ingress controller, you will need it to call the API.
 
 To test the deployment run the following curl command:
+
 `curl --location --request POST 'http://${ingressIpAddress}/digests'  
 --header 'api-key: thisisademo'  
 --header 'Content-Type: application/json'  
 --data-raw '{ "algorithm": "SHA256", "text": "test" }`
+
+This should return a HTTP 200 status code with the following response:
+
+`{
+    "algorithm": "SHA256",
+    "digest": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+}`
