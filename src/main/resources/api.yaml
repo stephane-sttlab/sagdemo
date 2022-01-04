@@ -1,0 +1,111 @@
+openapi: 3.0.2
+servers:
+  - url: http://sagdemo.sttlab.eu
+info:
+  description: |-
+    SAG demo API       
+  version: 0.0.1
+  title: SAG demo
+  contact:
+    email: stephane.tailland@gmail.com
+
+paths:
+  /digests:
+    post:
+      tags:
+        - Digest
+      summary: Obtain the digest of a given text content
+      description: Obtain the digest of a given text content
+      operationId: obtainDigest
+      responses:
+        '200':
+          description: Digest computed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Digest'
+        '401':
+          description: Caller not identified
+        '403':
+          description: Caller not authorized
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      requestBody:
+        description: Obtain a digest
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DigestRequest'
+components:
+  schemas:
+    Digest:
+      properties:
+        algorithm:
+          type: string
+          enum:
+            - SHA256
+            - SHA512
+          description: The hash algorithm
+          example: SHA256
+        digest:
+          type: string
+          description: The text on which the hashing function is executed
+          example: 9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
+      type: object
+      required:
+        - algorithm
+        - digest
+    DigestRequest:
+      properties:
+        algorithm:
+          type: string
+          enum:
+            - SHA256
+            - SHA512
+          description: The hash algorithm
+          example: SHA256
+        text:
+          type: string
+          description: The text on which the hashing function is executed
+          example: This is a test
+          minLength: 1
+      type: object
+      required:
+        - algorithm
+        - text
+    ApiError:
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 8519e929-9475-4ff9-a865-cfe65b26cdc6
+        dateTime:
+          type: string
+          format: date-time
+          example: 2022-01-03T17:32:28Z
+        httpStatus:
+          type: string
+          description: The HTTP status associated to the error
+          example: 400
+        errorCode:
+          type: string
+          description: The code associated to the error
+          example: INVALID_REQUEST
+        errorMessages:
+          type: array
+          items:
+            type: string
+            example: name is required
+          description: The messages associated to the error
+      type: object

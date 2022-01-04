@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "020d48c6-1945-4718-8578-a78d95b25f3d",
+		"name": "Sagdemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List pastes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "api_dev_key",
+							"value": "d60645321349a02690fc62d4036099ef",
+							"type": "text"
+						},
+						{
+							"key": "api_user_key",
+							"value": "f817561e25483338f1cee8d26ee22031",
+							"type": "text"
+						},
+						{
+							"key": "api_option",
+							"value": "list",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://pastebin.com/api/api_post.php",
+					"protocol": "https",
+					"host": [
+						"pastebin",
+						"com"
+					],
+					"path": [
+						"api",
+						"api_post.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get paste",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "api_dev_key",
+							"value": "d60645321349a02690fc62d4036099ef",
+							"type": "text"
+						},
+						{
+							"key": "api_user_key",
+							"value": "f817561e25483338f1cee8d26ee22031",
+							"type": "text"
+						},
+						{
+							"key": "api_option",
+							"value": "show_paste",
+							"type": "text"
+						},
+						{
+							"key": "api_paste_key",
+							"value": "gr9ZXJ8K",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://pastebin.com/api/api_raw.php",
+					"protocol": "https",
+					"host": [
+						"pastebin",
+						"com"
+					],
+					"path": [
+						"api",
+						"api_raw.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get digest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{api-key-value}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"algorithm\": \"SHA256\",\n    \"text\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{digestRootUrl}}/digests",
+					"host": [
+						"{{digestRootUrl}}"
+					],
+					"path": [
+						"digests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger webhook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "webhook_key",
+						"value": "{{webHookKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{webHookUrl}}?pasteKey=Y0fPwBAu",
+					"host": [
+						"{{webHookUrl}}"
+					],
+					"query": [
+						{
+							"key": "pasteKey",
+							"value": "Y0fPwBAu"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
