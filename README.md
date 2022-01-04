@@ -77,6 +77,7 @@ The ./deployment folder contains Kubernetes deployment files (in yaml format):
 
     ![Kubernetes Architecture](https://github.com/stephane-sttlab/sagdemo/blob/main/Sagdemo_KubernetesArchitecture.png)
   
+  
 To deploy in your Kubernetes cluster:
 * Make sure to connect your kubectl client to the cluster in which you want to perform the deployment.
 * Install the ngnix ingress controller in your cluster.
