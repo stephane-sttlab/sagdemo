@@ -5,7 +5,7 @@ metadata:
     app: sagdemo
   name: sagdemo
 spec:
-  replicas: 1
+  replicas: 2
   minReadySeconds: 45
   selector:
     matchLabels:
@@ -16,7 +16,7 @@ spec:
         app: sagdemo
     spec:
       containers:
-      - image: sttlab/sagdemo:0.0.6
+      - image: sttlab/sagdemo:latest
         imagePullPolicy: IfNotPresent
         name: sagdemo
         ports:
